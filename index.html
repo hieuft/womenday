@@ -1,0 +1,89 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<div class="container">
+		<button class="bg">
+			<img src="./assets/bg.png" />
+		</button>
+
+		<button class="y">
+			<img src="./assets/y.webp" />
+		</button>
+
+
+		<button class="p">
+			<img src="./assets/p.webp" />
+		</button>
+
+
+		<button class="s">
+			<img src="./assets/s.webp" />
+		</button>
+	</div>
+
+	<div id="dialog-container">
+
+	</div>
+
+
+	<div id="dialog">
+		<div class="envelope-container">
+			<div class="envelope">
+				<div class="letter">
+					<p><b>Hello!</b></p>
+					<p>This is a letter inside the envelope.</p>
+				</div>
+			</div>
+		</div>
+		<!-- <div id="content">
+			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, dicta architecto maxime aut ex
+			tenetur
+			odit
+			ut veritatis incidunt ab pariatur eius, expedita quisquam consequuntur ipsa voluptates repellat possimus
+			in.
+			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates itaque doloribus vel, neque
+			voluptatem
+			voluptatum maiores asperiores fugiat delectus provident ipsa quaerat iste earum rerum sapiente quo
+			laborum
+			aliquam quisquam!
+			Lorem ipsum, dolor sit amet consectetur adipisicing elit. At ducimus voluptates iusto sunt expedita
+			quaerat
+			aliquam repudiandae dolores quae, saepe, illo eveniet porro corrupti? Deleniti debitis ad hic error
+			dicta.
+		</div> -->
+	</div>
+
+	<script>
+		const buttons = document.getElementsByTagName("button");
+		const dialogContainer = document.getElementById("dialog-container");
+		const dialog = document.getElementById("dialog");
+
+		for (const btn of buttons) {
+			btn.addEventListener("click", () => {
+				dialog.style.display = "block";
+				dialogContainer.style.display = "block";
+			})
+		}
+
+		dialogContainer.addEventListener("click", (e) => {
+			dialog.style.display = "none";
+			dialogContainer.style.display = "none"
+		})
+
+		// function makeSquare() {
+		// 	const flap = document.getElementById("flap");
+		// 	flap.style.height = `${flap.offsetWidth}px`;
+		// }
+
+		// window.addEventListener('DOMContentLoaded', makeSquare);
+	</script>
+</body>
+
+</html>
