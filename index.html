@@ -9,6 +9,10 @@
 
 <body>
 	<div class="container">
+		<div class="title">
+			Chúc mừng 20 tháng 10
+		</div>
+
 		<button class="bg">
 			<img src="./assets/bg.png" />
 		</button>
@@ -37,9 +41,25 @@
 		<div class="envelope-container">
 			<div class="envelope">
 				<div class="letter">
+					<p class="letter-title"><b>Hello World!</b></p>
 					<div class="letter-content">
-						<p><b>Hello!</b></p>
-						<p>This is a letter inside the envelope.</p>
+						<p>
+							Với tư cách là những anh chàng đáng yêu của CS7, chúng tôi hân hạnh được chuẩn bị cho các
+							bạn nữ một buổi lễ 20/10 với
+							tất cả sự chân thành. Dẫu rằng vì hoàn cảnh không cho phép để chúng tôi có thể chuẩn bị
+							nhiều hơn nhưng hi vọng rằng với
+							tất cả cố gắng, chúng tôi có thể đem lại cho các bạn niềm vui và nhiều hơn nữa là sự hạnh
+							phúc. Website này bạn dev của
+							chúng ta chỉ có thể làm rất nhanh trong 2 ngày nên sẽ có nhiều thiếu sót, chúng tôi sẽ cố
+							gắng phát triển nhiều thêm
+							trong thời gian tới. Cảm ơn các bạn nữ đã đón nhận món quà này, và tập thể anh em K70I-CS7
+							cũng sẵn sàng nhận feedback
+							về món quà. Xin chúc các bạn nữ của CS7 sẽ có một ngày 20/10 thật vui và một tương lai tràn
+							ngập điểm cao cùng những
+							ngày tháng tuyệt vời ở Hola. Hi vọng tất cả mọi người, cả những bạn nam và bạn nữ trong lớp
+							sẽ hòa đồng, yêu thương nhau
+							hơn qua từng ngày.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -50,19 +70,68 @@
 		const buttons = document.getElementsByTagName("button");
 		const dialogContainer = document.getElementById("dialog-container");
 		const dialog = document.getElementById("dialog");
+		const letter = document.querySelector(".letter");
+		const envelopeContainer = document.querySelector(".envelope-container");
+
+		let isOpen = false;
 
 		for (const btn of buttons) {
 			btn.addEventListener("click", () => {
-				dialog.style.display = "block";
-				dialogContainer.style.display = "block";
+				if (!isOpen) {
+					openEnvelope();
+				} else {
+					closeEnvelope();
+				}
 			})
 		}
 
 		dialogContainer.addEventListener("click", (e) => {
-			dialog.style.display = "none";
-			dialogContainer.style.display = "none"
+			if (isOpen) {
+				closeEnvelope();
+			}
 		})
 
+		function openEnvelope() {
+			dialog.style.display = "block";
+			dialogContainer.style.display = "block";
+			isOpen = true;
+
+			// Reset animations and styles
+			letter.classList.remove("closing");
+			envelopeContainer.classList.remove("closing");
+			letter.style.animation = "";
+			letter.style.transform = "";
+
+			// Add opening animation with slight delay
+			setTimeout(() => {
+				letter.style.animation = "letterUp 0.8s ease-out forwards";
+			}, 100);
+		}
+
+		function closeEnvelope() {
+			isOpen = false;
+
+			// Add closing animations
+			letter.classList.add("closing");
+			envelopeContainer.classList.add("closing");
+
+			// Hide dialog after all animations complete
+			setTimeout(() => {
+				dialog.style.display = "none";
+				dialogContainer.style.display = "none";
+
+				// Reset classes and styles for next opening
+				letter.classList.remove("closing");
+				envelopeContainer.classList.remove("closing");
+				letter.style.animation = "";
+				letter.style.transform = "";
+				letter.style.height = "";
+				letter.style.width = "";
+				letter.style.left = "";
+				letter.style.top = "";
+				letter.style.opacity = "";
+			}); // Total time: letter animation (1200ms) + envelope delay (1200ms) + envelope animation (800ms)
+		}
 
 		function createHeart() {
 			const heart = document.createElement("img");

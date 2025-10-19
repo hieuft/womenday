@@ -1,3 +1,8 @@
+@font-face {
+	font-family: AlexBrush;
+	src: url(./assets/fonts/AlexBrush-Regular.ttf)
+}
+
 body {
 	margin: 0;
 }
@@ -58,6 +63,18 @@ button:active {
 	width: 50%;
 }
 
+.title {
+	font-family: AlexBrush;
+	position: absolute;
+	top: 5%;
+	left: 5%;
+	z-index: 99999;
+	font-size: 2.5rem;
+	color: white;
+	font-weight: 700;
+	text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
 #dialog-container {
 	display: none;
 	z-index: 99998;
@@ -107,7 +124,7 @@ button:active {
 	bottom: 0;
 	left: 50%;
 	z-index: 9999999;
-	transform: translate(-50%, 50%);
+	transform: translate(-50%, 20%);
 }
 
 .envelope {
@@ -116,25 +133,18 @@ button:active {
 	/* This makes the envelope fill its parent */
 	aspect-ratio: 16 / 10;
 	/* Keeps the envelope's shape */
-	background-color: #f0a2a2;
-	/* Back of the envelope color */
+	background-image: url('./assets/envelopes back.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 	cursor: pointer;
 	transition: all 0.3s ease-out;
 	z-index: 999999;
+	-webkit-filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.3));
+	filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, 0.3));
 }
 
-/* The envelope's main rectangular body */
-.envelope::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #f0a2a2;
-	/* Creates the bottom V-shape of the front */
-	z-index: 999999999999;
-}
+/* The envelope's main rectangular body - now handled by background image */
 
 /* The flap of the envelope */
 .envelope::after {
@@ -143,34 +153,49 @@ button:active {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 50%;
-	background-color: #e08c8c;
-	/* Darker flap color */
-	/* Creates the top triangle flap */
-	clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-	z-index: 99999990;
+	height: 100%;
+	background-image: url('./assets/envelopes front.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: 1000000;
 	transform-origin: top;
-
-	transform: rotateX(180deg);
-	z-index: 999997;
+	-webkit-filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 /* The letter inside */
 .letter {
 	position: fixed;
-	top: 5%;
+	top: 35%;
 	left: 5%;
 	width: 90%;
 	height: 90vh;
 	background-color: #ffffff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	z-index: 999998;
+	z-index: 999999.5;
 	text-align: center;
 	padding-top: 20px;
 	font-family: sans-serif;
 	color: #333;
 
+
 	animation: letterUp 0.8s 0.1s forwards;
+}
+
+.letter-title {
+	font-size: 1.5rem;
+	font-family: monospace;
+	margin: 0 0;
+}
+
+.letter-content {
+	font-size: monospace;
+	padding: 8px;
+	padding-top: 0;
+	text-align: justify;
+	font-size: 1.1rem;
+	line-height: 1.2;
 }
 
 @keyframes letterUp {
@@ -178,6 +203,48 @@ button:active {
 
 	100% {
 		transform: translateY(-80vh);
+	}
+}
+
+@keyframes letterClose {
+	0% {
+		transform: translateY(-80vh) scale(1);
+		height: 90vh;
+		width: 90%;
+		left: 5%;
+		top: 35%;
+		opacity: 1;
+		z-index: 999999.5;
+	}
+
+	30% {
+		transform: translateY(0) scale(1);
+		height: 90vh;
+		width: 90%;
+		left: 5%;
+		top: 35%;
+		opacity: 1;
+		z-index: 999999.5;
+	}
+
+	70% {
+		transform: translateY(0) scale(0.3);
+		height: 30%;
+		width: 40%;
+		left: 30%;
+		top: 60%;
+		opacity: 0.8;
+		z-index: 999999;
+	}
+
+	100% {
+		transform: translateY(10px) scale(0.2);
+		height: 20%;
+		width: 30%;
+		left: 35%;
+		top: 65%;
+		opacity: 0.3;
+		z-index: 999998;
 	}
 }
 
