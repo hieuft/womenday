@@ -28,36 +28,22 @@
 		</button>
 	</div>
 
-	<div id="dialog-container">
-
-	</div>
-
 
 	<div id="dialog">
+		<div id="dialog-container">
+
+		</div>
+
 		<div class="envelope-container">
 			<div class="envelope">
 				<div class="letter">
-					<p><b>Hello!</b></p>
-					<p>This is a letter inside the envelope.</p>
+					<div class="letter-content">
+						<p><b>Hello!</b></p>
+						<p>This is a letter inside the envelope.</p>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- <div id="content">
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, dicta architecto maxime aut ex
-			tenetur
-			odit
-			ut veritatis incidunt ab pariatur eius, expedita quisquam consequuntur ipsa voluptates repellat possimus
-			in.
-			Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates itaque doloribus vel, neque
-			voluptatem
-			voluptatum maiores asperiores fugiat delectus provident ipsa quaerat iste earum rerum sapiente quo
-			laborum
-			aliquam quisquam!
-			Lorem ipsum, dolor sit amet consectetur adipisicing elit. At ducimus voluptates iusto sunt expedita
-			quaerat
-			aliquam repudiandae dolores quae, saepe, illo eveniet porro corrupti? Deleniti debitis ad hic error
-			dicta.
-		</div> -->
 	</div>
 
 	<script>
@@ -77,12 +63,21 @@
 			dialogContainer.style.display = "none"
 		})
 
-		// function makeSquare() {
-		// 	const flap = document.getElementById("flap");
-		// 	flap.style.height = `${flap.offsetWidth}px`;
-		// }
 
-		// window.addEventListener('DOMContentLoaded', makeSquare);
+		function createHeart() {
+			const heart = document.createElement("img");
+			heart.src = "https://pngimg.com/uploads/heart/heart_PNG51335.png";
+			heart.classList.add("heart");
+			heart.style.left = Math.random() * 100 + "vw";
+			heart.style.animationDuration = Math.random() * 5 + 3 + "s ";
+			// heart.innerText = "🦄";
+			document.body.appendChild(heart);
+			setTimeout(() => {
+				heart.remove();
+			}, 7000);
+		}
+
+		setInterval(createHeart, 500);
 	</script>
 </body>
 

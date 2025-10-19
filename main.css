@@ -62,9 +62,10 @@ button:active {
 	display: none;
 	z-index: 99998;
 	position: fixed;
+	width: 300vw;
 	top: 0;
-	left: 0;
-	right: 0;
+	left: -200%;
+	right: 200%;
 	bottom: 0;
 	background-color: #000000b9;
 }
@@ -132,7 +133,7 @@ button:active {
 	height: 100%;
 	background-color: #f0a2a2;
 	/* Creates the bottom V-shape of the front */
-	z-index: 99999999;
+	z-index: 999999999999;
 }
 
 /* The flap of the envelope */
@@ -150,16 +151,17 @@ button:active {
 	z-index: 99999990;
 	transform-origin: top;
 
-	animation: openEnvelope 0.4s;
+	transform: rotateX(180deg);
+	z-index: 999997;
 }
 
 /* The letter inside */
 .letter {
-	position: absolute;
+	position: fixed;
 	top: 5%;
 	left: 5%;
 	width: 90%;
-	height: 80%;
+	height: 90vh;
 	background-color: #ffffff;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	z-index: 999998;
@@ -168,22 +170,31 @@ button:active {
 	font-family: sans-serif;
 	color: #333;
 
-	animation: letterUp 0.4s 0.1s;
-}
-
-@keyframes openEnvelope {
-	0% {}
-
-	100% {
-		transform: rotateX(180deg);
-		z-index: 999997;
-	}
+	animation: letterUp 0.8s 0.1s forwards;
 }
 
 @keyframes letterUp {
 	0% {}
 
 	100% {
-		top: -40%;
+		transform: translateY(-80vh);
+	}
+}
+
+.heart {
+	position: fixed;
+	bottom: -1vh;
+	width: 25px;
+	height: auto;
+	/* font-size: 40px; */
+	transform: translateY(0);
+	animation: fall 2.5s linear forwards;
+	z-index: 99999;
+}
+
+@keyframes fall {
+	to {
+		transform: translateY(-102vh);
+		opacity: 0;
 	}
 }
